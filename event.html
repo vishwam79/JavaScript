@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+       
+
+        .main{
+            max-height: 100%;
+            width: 1000px;
+            flex: auto;
+            justify-content: center;
+            display: flex;
+        }
+
+
+        .box{
+            width: 300px;
+            height: 300px;
+            margin: 5px;
+            background-color: aqua;
+            border: 1px solid black;
+            border-radius: 20px;
+            text-align: center;
+            color: aliceblue;
+            font: 5;
+        }
+
+        .submittext{
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <div  class="box" id="box1">box1</div>
+        <div class="bg" id="box2">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+    </div>
+
+
+
+    <form id="submittext">
+
+        <label for="">name:</label>
+        <input type="text" id="inputtext">
+        <button id="submittext2">submit</button>
+
+    </form>
+
+
+    <script>
+
+
+// function myclicked(){
+
+//     let box1 = document.querySelector('#box1');
+
+//     box1.style.backgroundColor = 'yellow';
+// }
+
+
+
+
+let bg = document.getElementById('box1');
+bg.addEventListener('click', ()=>{
+    bg.style.backgroundColor = 'green';
+    // bg.innerText ="hello my name is pata nahi";
+})
+
+
+
+
+// // input event listener
+
+
+const inputtext = document.querySelector('#inputtext');
+
+const submit = document.querySelector('#submittext2').addEventListener('click', function(e){
+    e.preventDefault();
+    console.log(inputtext.value);
+})
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
