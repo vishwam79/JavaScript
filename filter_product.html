@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+      }
+
+      h1 {
+        font-size: 18px;
+      }
+      
+      .main {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .box {
+        width: 300px;
+        height: 400px;
+        border: 1px solid black;
+        margin: 5px 10px 10px 5px;
+        text-align: center;
+        border-radius: 15px;
+      }
+
+      img {
+        width: 200px;
+        height: 200px;
+        mix-blend-mode: multiply;
+      }
+
+      .click {
+        width: 300px;
+        height: 50px;
+        
+        font-weight: 700;
+        font-size: large;
+        cursor: pointer;
+        margin: 30px;
+        text-align: center;
+      }
+
+      .categories {
+        margin: 20px 0;
+      }
+
+      .categories button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- change color -->
+    <button onclick="myproduct()" class="click">Show all products</button>
+
+    <!-- filter buttons -->
+    <div class="categories">
+      <button onclick="fetchCategory('electronics')">Electronics</button>
+      <button onclick="fetchCategory('jewelery')">Jewelry</button>
+      <button onclick="fetchCategory('men\'s clothing')">Men's Clothing</button>
+      <button onclick="fetchCategory('women\'s clothing')">Women's Clothing</button>
+    </div>
+
+    <!-- fetch api  -->
+    <div class="main"></div>
+
+    <script>
+      let box = document.querySelector(".main");
+
+      const fetchProducts = async (url) => {
+        box.innerHTML = "";
+        let product = await fetch(url);
+        let finalproduct = await product.json();
+        console.log(finalproduct);
+
+        finalproduct.forEach((element) => {
+          box.innerHTML += `
+            <div class='box'>
+              <img src=${element.image} alt="" >
+              <h1>${element.title}</h1>
+              <p>price: ${element.price}</p>
+              <button>Buy now</button>
+            </div>`;
+        });
+      };
+
+      const myproduct = () => {
+        fetchProducts("https://fakestoreapi.com/products");
+      };
+
+      const fetchCategory = (category) => {
+        fetchProducts(`https://fakestoreapi.com/products/category/${category}`);
+      };
+
+      // Initial fetch to display all products
+      myproduct();
+    </script>
+  </body>
+</html>
